@@ -1,10 +1,11 @@
-# SRB2Kart Compile & Install Script by TheOneGoofAli.
+# SRB2Kart v1.6 Compile & Install Script by TheOneGoofAli.
 # May be useful for setting up dedicated servers on VPS.
-
 # Color codes to pretty up code.
 color='\033[0;32m'
 nc='\033[0m'
 warn='\033[0;36m'
+# Default link for SRB2Kart v1.6.
+repolink='https://git.do.srb2.org/KartKrew/Kart-Public.git'
 
 echo -e "${color}SRB2Kart Compile & Install Script by TheOneGoofAli.${nc}"
 
@@ -19,6 +20,16 @@ else
 		esac
 	done
 fi
+echo 'If you want to use a different repository for compililation, please put the link to it here. Otherwise, hit ENTER to use default.'
+echo 'Example: https://git.do.srb2.org/KartKrew/Kart-Public.git'
+read repocustlink
+if [ -z "$repocustlink" ]
+then
+	echo -e "${color}Using default: $repolink${nc}"
+else
+	repolink=$repocustlink
+	echo -e "${color}Set the repo link as: $repolink${nc}"
+fi
 echo 'Do you want to delete the cloned SRB2Kart repository after compiling?'
 select yn in "Yes" "No"; do
 	case $yn in
@@ -31,8 +42,8 @@ echo -e "${color}Performing an update check for packages...${nc}"
 sudo apt-get update
 echo -e "${color}Installing dependencies needed for compiling SRB2Kart...${nc}"
 sudo apt-get -y install build-essential git p7zip-full p7zip-rar nasm libpng-dev zlib1g-dev libsdl2-dev libsdl2-mixer-dev libgme-dev libopenmpt-dev libcurl4-openssl-dev
-echo -e "${color}Cloning the most recent version of SRB2Kart...${nc}"
-git clone https://git.do.srb2.org/KartKrew/Kart-Public.git
+echo -e "${color}Cloning the SRB2Kart source code from $repolink...${nc}"
+git clone $repolink
 cd Kart-Public
 cd src
 echo -e "${color}Compiling, this may take a while.${nc}"
