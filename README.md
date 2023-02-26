@@ -1,5 +1,5 @@
 # SRB2K Quick Start
-A small Bash script for compiling and installing SRB2Kart on fresh installs of Ubuntu 18.04+.
+A small Bash script for compiling and installing SRB2Kart v1.6 on fresh installs of Ubuntu 18.04+.
 May prove useful in getting a SRB2Kart server up and running on a *VPS* a bit faster.
 
 ## Prerequisites
